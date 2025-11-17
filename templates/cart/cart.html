@@ -1,0 +1,692 @@
+{%extends 'base.html'%}
+{%block content%}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .logo span {
+            color: #3498db;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-icons i {
+            font-size: 20px;
+            margin-left: 20px;
+            cursor: pointer;
+            color: #2c3e50;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .header-icons i:hover {
+            color: #3498db;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Cart Section */
+        .cart-section {
+            padding: 40px 0;
+        }
+
+        .cart-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .cart-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .cart-items {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .cart-summary {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Cart Items */
+        .cart-item {
+            display: flex;
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .item-image {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .item-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .item-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .item-options {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .item-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+            font-size: 16px;
+        }
+
+        .remove-btn {
+            color: #e74c3c;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .remove-btn:hover {
+            color: #c0392b;
+        }
+
+        /* Cart Summary */
+        .summary-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .summary-total {
+            font-weight: 700;
+            font-size: 18px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .checkout-btn:hover {
+            background: #2980b9;
+        }
+
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .continue-shopping:hover {
+            text-decoration: underline;
+        }
+
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .empty-cart i {
+            font-size: 80px;
+            color: #bdc3c7;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .empty-cart p {
+            color: #7f8c8d;
+            margin-bottom: 25px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .shop-btn:hover {
+            background: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ecf0f1;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .item-image {
+                width: 100%;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin: 15px 0;
+            }
+            
+            .header-icons {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Audio<span>Tech</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Deals</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-shopping-cart">
+                        <span class="cart-count">3</span>
+                    </i>
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <h1 class="cart-title">Your Shopping Cart</h1>
+            
+            <div class="cart-container">
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Wireless Headphones">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">AudioTech Pro Wireless Headphones</div>
+                            <div class="item-price">$199.99</div>
+                            <div class="item-options">Color: Black | Size: Standard</div>
+                            <div class="item-actions">
+                                <div class="quantity-selector">
+                                    <div class="quantity-btn minus">-</div>
+                                    <input type="text" class="quantity-input" value="1">
+                                    <div class="quantity-btn plus">+</div>
+                                </div>
+                                <button class="remove-btn">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1487215078519-e21cc028cb29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="In-Ear Headphones">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">AudioTech In-Ear Pro</div>
+                            <div class="item-price">$79.99</div>
+                            <div class="item-options">Color: White</div>
+                            <div class="item-actions">
+                                <div class="quantity-selector">
+                                    <div class="quantity-btn minus">-</div>
+                                    <input type="text" class="quantity-input" value="2">
+                                    <div class="quantity-btn plus">+</div>
+                                </div>
+                                <button class="remove-btn">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1599669454699-248893623440?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Bluetooth Speaker">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">AudioTech Portable Speaker</div>
+                            <div class="item-price">$129.99</div>
+                            <div class="item-options">Color: Blue</div>
+                            <div class="item-actions">
+                                <div class="quantity-selector">
+                                    <div class="quantity-btn minus">-</div>
+                                    <input type="text" class="quantity-input" value="1">
+                                    <div class="quantity-btn plus">+</div>
+                                </div>
+                                <button class="remove-btn">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cart Summary -->
+ <aside class="col-md-3">
+							<div class="card mb-3">
+								<div class="card-body">
+								<form>
+									<div class="form-group">
+										<label>Have coupon?</label>
+										<div class="input-group">
+											<input type="text" class="form-control" name="" placeholder="Coupon code">
+											<span class="input-group-append"> 
+												<button class="btn btn-primary">Apply</button>
+											</span>
+										</div>
+									</div>
+								</form>
+								</div> <!-- card-body.// -->
+							</div>  <!-- card .// -->
+							<div class="card">
+								<div class="card-body">
+										<dl class="dlist-align">
+										  <dt>Total price:</dt>
+										  <dd class="text-right">USD 568</dd>
+										</dl>
+										<dl class="dlist-align">
+										  <dt>Discount:</dt>
+										  <dd class="text-right">USD 658</dd>
+										</dl>
+										<dl class="dlist-align">
+										  <dt>Total:</dt>
+										  <dd class="text-right  h5"><strong>$1,650</strong></dd>
+										</dl>
+										<hr>
+										<p class="text-center mb-3">
+											<img src="images/misc/payments.png" height="26">
+										</p>
+										
+								</div> <!-- card-body.// -->
+							</div>  <!-- card .// -->
+						</aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">Headphones</a></li>
+                        <li><a href="#">Speakers</a></li>
+                        <li><a href="#">Earbuds</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Warranty</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 AudioTech. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quantity Selector
+        document.querySelectorAll('.quantity-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const isMinus = this.classList.contains('minus');
+                const input = this.parentElement.querySelector('.quantity-input');
+                let currentValue = parseInt(input.value);
+                
+                if (isMinus && currentValue > 1) {
+                    input.value = currentValue - 1;
+                } else if (!isMinus) {
+                    input.value = currentValue + 1;
+                }
+                
+                updateCartTotal();
+            });
+        });
+
+        // Remove Item
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cartItem = this.closest('.cart-item');
+                cartItem.style.opacity = '0';
+                setTimeout(() => {
+                    cartItem.remove();
+                    updateCartTotal();
+                    updateCartCount();
+                    
+                    // Show empty cart message if no items left
+                    if (document.querySelectorAll('.cart-item').length === 0) {
+                        showEmptyCart();
+                    }
+                }, 300);
+            });
+        });
+
+        // Update Cart Total
+        function updateCartTotal() {
+            let subtotal = 0;
+            
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const priceText = item.querySelector('.item-price').textContent;
+                const price = parseFloat(priceText.replace('$', ''));
+                const quantity = parseInt(item.querySelector('.quantity-input').value);
+                
+                subtotal += price * quantity;
+            });
+            
+            const tax = subtotal * 0.08;
+            const total = subtotal + tax;
+            
+            document.querySelector('.summary-row:nth-child(2) span:last-child').textContent = `$${subtotal.toFixed(2)}`;
+            document.querySelector('.summary-row:nth-child(4) span:last-child').textContent = `$${tax.toFixed(2)}`;
+            document.querySelector('.summary-total span:last-child').textContent = `$${total.toFixed(2)}`;
+            
+            // Update item count in summary
+            const itemCount = document.querySelectorAll('.cart-item').length;
+            document.querySelector('.summary-row:nth-child(2) span:first-child').textContent = `Subtotal (${itemCount} ${itemCount === 1 ? 'item' : 'items'})`;
+        }
+
+        // Update Cart Count in Header
+        function updateCartCount() {
+            const itemCount = document.querySelectorAll('.cart-item').length;
+            document.querySelector('.cart-count').textContent = itemCount;
+        }
+
+        // Show Empty Cart Message
+        function showEmptyCart() {
+            const cartItems = document.querySelector('.cart-items');
+            cartItems.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h2>Your cart is empty</h2>
+                    <p>Looks like you haven't added any items to your cart yet.</p>
+                    <a href="#" class="shop-btn">Start Shopping</a>
+                </div>
+            `;
+            
+            // Hide summary when cart is empty
+            document.querySelector('.cart-summary').style.display = 'none';
+        }
+
+        // Initialize
+        updateCartTotal();
+    </script>
+{%endblock%}

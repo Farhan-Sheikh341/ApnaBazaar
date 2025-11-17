@@ -1,0 +1,171 @@
+{%extends 'base/base.html'%}
+{% load static %}
+{%block content%}
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<body class="bg-gray-100">
+
+<!-- MAIN WRAPPER -->
+<div class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+  <!-- LEFT SIDE - IMAGES (FIXED, NO SCROLL) -->
+<div class="flex flex-col gap-6">
+
+  <div class="flex gap-4">
+
+    <!-- THUMBNAILS -->
+    <div class="flex flex-col gap-3">
+        {%for image in product.product_images.all%}
+      <img src="{{image.image.url}}" class="thumb w-24 h-24 border rounded cursor-pointer">
+        {%endfor%}
+    </div>
+
+    <!-- MAIN IMAGE + WISHLIST -->
+    <div class="relative">
+
+      <!-- HEART BUTTON -->
+      <button class="absolute top-3 right-3 bg-white shadow px-2 py-2 rounded-full hover:bg-gray-100">
+        ❤️
+      </button>
+
+      <!-- MAIN IMAGE -->
+      <img id="mainImage" src="{{product.product_images.first.image.url}}" class="w-full rounded-lg shadow">
+    </div>
+
+  </div>
+
+  <!-- ACTION BUTTONS BELOW IMAGE -->
+  <div class="flex gap-4">
+
+    <button class="flex-1 bg-yellow-500 text-black py-3 rounded-lg font-semibold hover:bg-yellow-600">
+      Add to Cart
+    </button>
+
+    <button class="flex-1 bg-orange-600 text-white py-3 rounded-lg font-semibold hover:bg-orange-700">
+      Buy Now
+    </button>
+
+  </div>
+
+</div>
+
+  <!-- RIGHT SIDE SCROLLABLE PANEL -->
+  <div class="max-h-[85vh] overflow-y-auto pr-4">
+
+    <!-- PRODUCT NAME -->
+    <h2 class="text-3xl font-bold">{{product.product_name}}</h2>
+
+    <!-- RATING -->
+    <div class="flex items-center gap-2 mt-2">
+      <span class="bg-green-600 text-white px-2 py-1 text-sm rounded">4.3 ★</span>
+      <p class="text-gray-600 text-sm">(3,452 Ratings & 287 Reviews)</p>
+    </div>
+
+    <!-- PRICE -->
+    <div class="mt-4 flex items-center gap-3">
+      <p class="text-4xl font-semibold text-green-700">₹{{product.price}}</p>
+      <p class="line-through text-gray-500 text-xl">₹999</p>
+      <p class="text-green-600 font-medium text-xl">(50% OFF)</p>
+    </div>
+
+    <!-- Product DESCRIPTION -->
+    <ul class="mt-4 text-gray-700 leading-relaxed">
+
+        {%for line in product.product_description.splitlines%}
+            {%if line.strip%}
+            <li>{{line}}</li>
+            {%endif%}
+        {%endfor%}
+    
+    </ul>
+
+    <!-- SPECIFICATIONS -->
+    <div class="mt-6">
+      <h3 class="text-xl font-semibold mb-2">Specifications</h3>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        {%for line in product.product_specification.splitlines%}
+            {%if line.strip%}
+             <li>{{line}}</li>
+            {%endif%}
+        {%endfor%}
+      </ul>
+    </div>
+
+    <!-- RATING SECTION -->
+    <div class="mt-6">
+      <h3 class="text-xl font-semibold">Ratings & Reviews</h3>
+
+      <div class="mt-3">
+        <p class="font-medium">4.3 ★ Overall</p>
+        <p class="text-gray-600 text-sm">Based on 3,452 reviews</p>
+      </div>
+
+      <div class="mt-4 space-y-4">
+        <div class="border p-3 rounded">
+          <p class="font-semibold">Rahul Sharma ★★★★★</p>
+          <p class="text-gray-600 text-sm mt-1">Amazing quality for this price!</p>
+        </div>
+        <div class="border p-3 rounded">
+          <p class="font-semibold">Aman Gupta ★★★☆☆</p>
+          <p class="text-gray-600 text-sm mt-1">Good but size runs slightly small.</p>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- RIGHT SCROLL END -->
+
+</div> <!-- MAIN WRAPPER END -->
+
+<!-- RELATED PRODUCTS -->
+<div class="max-w-7xl mx-auto mt-10">
+  <h2 class="text-2xl font-bold mb-4">Related Products</h2>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+    
+    <div class="bg-white p-4 rounded shadow">
+      <img src="https://placehold.co/300" class="rounded">
+      <p class="font-medium mt-2">Casual Shirt</p>
+      <p class="text-green-600 font-bold">₹799</p>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow">
+      <img src="https://placehold.co/300" class="rounded">
+      <p class="font-medium mt-2">Cotton Hoodie</p>
+      <p class="text-green-600 font-bold">₹1,299</p>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow">
+      <img src="https://placehold.co/300" class="rounded">
+      <p class="font-medium mt-2">Slim Fit Jeans</p>
+      <p class="text-green-600 font-bold">₹999</p>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow">
+      <img src="https://placehold.co/300" class="rounded">
+      <p class="font-medium mt-2">Men’s Sneakers</p>
+      <p class="text-green-600 font-bold">₹1,499</p>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow">
+      <img src="https://placehold.co/300" class="rounded">
+      <p class="font-medium mt-2">Sports Trackpants</p>
+      <p class="text-green-600 font-bold">₹899</p>
+    </div>
+
+  </div>
+</div>
+<br>
+<br>
+
+<!-- JS FUNCTIONALITY -->
+<script>
+  // IMAGE SWITCHER
+  document.querySelectorAll(".thumb").forEach(img => {
+    img.addEventListener("click", () => {
+      document.getElementById("mainImage").src = img.src;
+    });
+  });
+</script>
+
+
+{%endblock%}

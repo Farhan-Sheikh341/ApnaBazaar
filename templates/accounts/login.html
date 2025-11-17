@@ -1,0 +1,438 @@
+{%extends 'base/base.html'%}
+{% load static %}
+{% block title %}Login{%endblock%}
+
+{%block content%}
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Main container for login page */
+        .login-page-container {
+            background-color: #e6f2ff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .login-container {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .poster {
+            flex: 1;
+            background: linear-gradient(135deg, #4a90e2, #63b3ed);
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+            margin-right: 10px;
+        }
+
+        .logo h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .poster h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .poster p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 350px;
+        }
+
+        .login-form {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-form h2 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #4a90e2;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #3a7bc8;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .signup-link a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        /* Shop Icon and Brand Styling */
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: #4a90e2;
+        }
+
+        .brand-logo i {
+            font-size: 2.2rem;
+            margin-right: 12px;
+            color: #4a90e2;
+        }
+
+        .brand-logo h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4a90e2;
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                margin: 10px 0;
+                border-radius: 8px;
+            }
+            
+            .poster {
+                padding: 30px 20px;
+                order: 2;
+            }
+            
+            .poster h1 {
+                font-size: 1.8rem;
+                margin-bottom: 10px;
+            }
+            
+            .poster p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            
+            .login-form {
+                padding: 30px 20px;
+                order: 1;
+            }
+            
+            .page-content {
+                padding: 10px;
+            }
+            
+            .brand-logo {
+                margin-bottom: 15px;
+            }
+            
+            .brand-logo i {
+                font-size: 1.8rem;
+                margin-right: 10px;
+            }
+            
+            .brand-logo h2 {
+                font-size: 1.5rem;
+            }
+            
+            .login-form h2 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .form-group input {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 5px 0;
+                border-radius: 6px;
+            }
+            
+            .poster {
+                padding: 25px 15px;
+            }
+            
+            .poster h1 {
+                font-size: 1.6rem;
+            }
+            
+            .login-form {
+                padding: 25px 15px;
+            }
+            
+            .page-content {
+                padding: 5px;
+            }
+            
+            .brand-logo i {
+                font-size: 1.6rem;
+                margin-right: 8px;
+            }
+            
+            .brand-logo h2 {
+                font-size: 1.3rem;
+            }
+            
+            .login-form h2 {
+                font-size: 1.3rem;
+            }
+            
+            .form-group input {
+                padding: 8px 10px;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 360px) {
+            .poster h1 {
+                font-size: 1.4rem;
+            }
+            
+            .poster p {
+                font-size: 0.9rem;
+            }
+            
+            .login-form h2 {
+                font-size: 1.2rem;
+            }
+            
+            .form-group label {
+                font-size: 0.9rem;
+            }
+            
+            .signup-link {
+                font-size: 0.9rem;
+            }
+            
+            .brand-logo i {
+                font-size: 1.4rem;
+            }
+            
+            .brand-logo h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Ensure proper spacing for footer */
+        .login-page-container {
+            position: relative;
+        }
+
+        /* Fix for very small screens */
+        @media (max-height: 600px) {
+            .page-content {
+                padding: 10px 0;
+            }
+            
+            .login-container {
+                margin: 5px 0;
+            }
+        }
+    </style>
+
+    <div class="login-page-container">
+        <div class="page-content">
+            <div class="login-container">
+                <div class="poster">
+                    <h1>Welcome Back to ApnaBazaar</h1>
+                    <p>Login to your account to continue shopping and manage your orders with ease.</p>
+                </div>
+                
+                <div class="login-form">
+                    <!-- Shop icon added to the left of ApnaBazaar text -->
+                    <div class="brand-logo">
+                        <i class="fas fa-store"></i>
+                        <h2 style="color: black;">ApnaBazaar</h2>
+                    </div>
+                    
+                    <h2>Login to Your Account</h2>
+                    
+                    <form  method="post" id="loginForm">
+                        {%csrf_token%}
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password" required>
+                        </div>
+                        
+                        <div class="forgot-password">
+                            <a href="#">Forgot Password?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+                    
+                    <div class="signup-link">
+                        Don't have an account? <a href="{%url 'register' %}">Sign up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // In a real application, you would send this data to a server
+            console.log('Login attempt:', { email, password });
+            
+            // Simple validation
+            if (email && password) {
+                alert('Login successful! (This is a demo)');
+                // Reset form
+                document.getElementById('loginForm').reset();
+            }
+        });
+
+        // Mobile responsiveness enhancement
+        function adjustLoginHeight() {
+            const viewportHeight = window.innerHeight;
+            const loginContainer = document.querySelector('.login-page-container');
+            
+            if (viewportHeight < 600) {
+                loginContainer.style.minHeight = '100vh';
+            }
+        }
+
+        // Adjust on load and resize
+        window.addEventListener('load', adjustLoginHeight);
+        window.addEventListener('resize', adjustLoginHeight);
+
+        // Prevent zoom on input focus for mobile
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function() {
+                if (window.innerWidth <= 768) {
+                    this.style.fontSize = '16px'; // Prevents zoom on iOS
+                }
+            });
+        });
+    </script>
+{%endblock%}

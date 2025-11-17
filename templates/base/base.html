@@ -1,0 +1,515 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ShopHub{% endblock %}</title>
+    
+    
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Add Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 70px;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #3498db;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #3498db;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #3498db;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icon {
+            margin-left: 20px;
+            font-size: 20px;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-icon:hover {
+            color: #3498db;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-container {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .search-input {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            width: 200px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3498db;
+            width: 250px;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #7f8c8d;
+            cursor: pointer;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            z-index: 1;
+            top: 35px;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: #2c3e50;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main content area */
+        main {
+            min-height: calc(100vh - 80px);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Mobile Styles */
+        @media screen and (max-width: 968px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .search-container {
+                margin-right: 10px;
+            }
+
+            .search-input {
+                width: 150px;
+            }
+
+            .search-input:focus {
+                width: 180px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .navbar-container {
+                padding: 15px 3%;
+            }
+
+            .search-input {
+                width: 120px;
+            }
+
+            .search-input:focus {
+                width: 150px;
+            }
+
+            .nav-icon {
+                margin-left: 15px;
+            }
+        }
+
+      
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <i class="fas fa-store text-blue-600 text-2xl"></i>
+
+<span class="ml-2 font-bold text-gray-800">Apna<span class="text-black">Bazaar</span>
+</span>
+            </a>
+        </div>
+
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="{% url 'home' %}" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#">Electronics</a>
+                    <a href="#">Fashion</a>
+                    <a href="#">Home & Kitchen</a>
+                    <a href="#">Beauty & Health</a>
+                    <a href="#">Sports</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Deals</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">New Arrivals</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
+
+        <div class="nav-icons">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search products...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-icon">
+                <a href="{% url 'login' %}"><i class="far fa-user"></i></a>
+            </div>
+            <div class="nav-icon">
+                <a href="#"><i class="far fa-heart"></i></a>
+            </div>
+            <div class="nav-icon">
+                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <!-- Professional Footer -->
+<footer class="bg-gray-900 text-white pt-12 pb-8">
+    <div class="container mx-auto px-4">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            
+            <!-- Column 1: Online Shopping -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-gray-200">ONLINE SHOPPING</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Men</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Women</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Kids</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Home & Living</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Beauty</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Gift Cards</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Myntra Insider</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 2: Customer Policies -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-gray-200">CUSTOMER POLICIES</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Contact Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">FAQ</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">T&C</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Track Orders</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Shipping</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Cancellation</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Returns</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Experience App -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-gray-200">EXPERIENCE APP</h3>
+                <div class="flex space-x-3 mb-4">
+                    <div class="bg-black p-2 rounded-lg">
+                        <img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" alt="Google Play" class="w-24 h-8 object-contain">
+                    </div>
+                    <div class="bg-black p-2 rounded-lg">
+                        <img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" alt="App Store" class="w-24 h-8 object-contain">
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold mb-4 text-gray-200 mt-6">KEEP IN TOUCH</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Column 4: Newsletter -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-gray-200">SUBSCRIBE</h3>
+                <p class="text-gray-400 text-sm mb-4">Get the latest trends and offers straight to your inbox</p>
+                <div class="flex mb-4">
+                    <input type="email" placeholder="Your Email Address" 
+                           class="flex-1 px-4 py-2 bg-gray-800 text-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                    <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg transition duration-300 text-sm font-medium">
+                        Subscribe
+                    </button>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <h4 class="font-semibold mb-2 text-gray-200">100% ORIGINAL</h4>
+                    <p class="text-gray-400 text-xs"> guarantee for all products at shopHub.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Methods & Security -->
+        <div class="border-t border-gray-700 pt-6 mb-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center">
+                <div class="mb-4 lg:mb-0">
+                    <h4 class="text-sm font-semibold mb-2 text-gray-300">WE ACCEPT</h4>
+                    <div class="flex space-x-2">
+                        <div class="bg-white p-1 rounded">
+                            <i class="fab fa-cc-visa text-2xl text-blue-900"></i>
+                        </div>
+                        <div class="bg-white p-1 rounded">
+                            <i class="fab fa-cc-mastercard text-2xl text-red-600"></i>
+                        </div>
+                        <div class="bg-white p-1 rounded">
+                            <i class="fab fa-cc-amex text-2xl text-blue-500"></i>
+                        </div>
+                        <div class="bg-white p-1 rounded">
+                            <i class="fab fa-cc-paypal text-2xl text-blue-700"></i>
+                        </div>
+                        <div class="bg-white p-1 rounded">
+                            <i class="fas fa-wallet text-2xl text-green-600"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="text-sm font-semibold mb-2 text-gray-300">SECURE PAYMENTS</h4>
+                    <div class="flex space-x-2">
+                        <div class="bg-green-500 p-1 rounded">
+                            <i class="fas fa-lock text-white text-lg"></i>
+                        </div>
+                        <span class="text-gray-400 text-sm">256-bit SSL Encryption</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-gray-700 pt-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center">
+                <div class="mb-4 lg:mb-0">
+                    <span class="text-gray-400 text-sm">© 2024 ShopHub. All rights reserved.</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Terms of Use</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">FAQ</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-sm">Returns</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            }));
+        }
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchBtn = document.querySelector('.search-btn');
+
+        if (searchInput && searchBtn) {
+            searchBtn.addEventListener('click', () => {
+                if (searchInput.value.trim() !== '') {
+                    alert(`Searching for: ${searchInput.value}`);
+                }
+            });
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && searchInput.value.trim() !== '') {
+                    alert(`Searching for: ${searchInput.value}`);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

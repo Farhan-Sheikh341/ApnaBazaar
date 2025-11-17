@@ -1,0 +1,779 @@
+{%extends 'base/base.html'%}
+{% load humanize %}
+{% load static %}
+{%block content%}
+<a href="#">
+<section class="relative w-full h-[70vh] md:h-[85vh] overflow-hidden">
+
+    <!-- SLIDER WRAPPER -->
+    <div id="heroSlider" class="absolute inset-0 flex transition-transform duration-700">
+
+        <!-- Slide 1 -->
+        <div class="min-w-full h-full bg-cover bg-right bg-no-repeat"
+             style="background-image: url('{% static "images/hero_posters/hero-poster-main.png" %}');">
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="min-w-full h-full bg-cover bg-right bg-no-repeat"
+             style="background-image: url('{% static "images/hero_posters/hero-poster-main4.png" %}');">
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="min-w-full h-full bg-cover bg-right bg-no-repeat"
+             style="background-image: url('{% static "images/hero_posters/hhhhhh.png" %}');">
+        </div>
+
+    </div>
+
+
+    <!-- DOTS INDICATOR -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 z-20">
+        <span class="dot w-3 h-3 bg-white/60 rounded-full"></span>
+        <span class="dot w-3 h-3 bg-white/60 rounded-full"></span>
+        <span class="dot w-3 h-3 bg-white/60 rounded-full"></span>
+    </div>
+
+    <!-- ARROW BUTTONS -->
+    <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 z-20">
+        ❮
+    </button>
+
+    <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 z-20">
+        ❯
+    </button>
+
+</section>
+</a>
+<!-- Ethnic wear section-->
+<section class="py-10 bg-gray-50">
+    <div class="container mx-auto px-4">
+
+        <!-- Section Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">Ethnic Wear Collection</h2>
+                <p class="text-gray-600 mt-2">A Touch of Tradition for Every Occasion</p>
+            </div>
+
+            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                View All
+                <i class="fas fa-chevron-right ml-1 text-sm"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- CARD 1: Men Ethnic Wear -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+                <img src="{% static 'images/ethnic-wear/men-etnic2.png'%}"
+                     class="w-full h-64 object-cover"
+                     alt="Men Ethnic Wear">
+
+                <div class="p-5">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Men Ethnic Wear</h2>
+                    <p class="text-gray-600 text-sm mb-3">Premium Kurtas, Sherwanis & Festive Collection</p>
+
+                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                        View all
+                        <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CARD 2: Women Ethnic Wear -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+                <img src="{% static 'images/ethnic-wear/womenwomen.png'%}"
+                     class="w-full h-64 object-cover"
+                     alt="Women Ethnic Wear">
+
+                <div class="p-5">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Women Ethnic Wear</h2>
+                    <p class="text-gray-600 text-sm mb-3">Sarees, Lehengas, Suit Sets & Festive Fashion</p>
+
+                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                        View all
+                        <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CARD 3: Kids Ethnic Wear -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+                <img src="{% static 'images/ethnic-wear/kid-ethnic.png'%}"
+                     class="w-full h-64 object-cover"
+                     alt="Kids Ethnic Wear">
+
+                <div class="p-5">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Kids Ethnic Wear</h2>
+                    <p class="text-gray-600 text-sm mb-3">Cute & Stylish Festive Outfits for Kids</p>
+
+                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                        View all
+                        <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- jewellery section  -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+
+        <!-- Section Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">Exclusive Jewellery Collection</h2>
+                <p class="text-gray-600 mt-2">Elegant Designs • Premium Finish</p>
+            </div>
+
+            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                View All
+                <i class="fas fa-chevron-right ml-1 text-sm"></i>
+            </a>
+        </div>
+
+        <!-- LEFT POSTER + RIGHT PRODUCTS -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+            <!-- LEFT SIDE POSTER -->
+            <div class="col-span-1 md:col-span-1">
+                <img src="{% static 'images/jewellary2.png' %}" 
+                     alt="Jewellery Poster"
+                     class="w-full h-full object-cover rounded-lg shadow-md">
+            </div>
+
+            <!-- RIGHT SIDE 3 PRODUCTS -->
+            <div class="col-span-1 md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for product in jewellery|slice:":3" %}
+                <a href="{% url 'product_page' product.slug%}">
+
+            <div class="bg-white rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border border-gray-100 h-full flex flex-col">
+
+                <div class="relative">
+                    
+                    <img src="{{ product.product_images.first.image.url }}" 
+                        alt="{{ product.product_name }}" 
+                        class="w-full h-96 object-cover">
+
+                    <div class="absolute top-2 left-2">
+                        <span class="bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">30% OFF</span>
+                    </div>
+                    <div class="absolute top-2 right-2">
+                        <button class="bg-white/90 hover:bg-white p-1.5 rounded-full shadow-sm">
+                            <i class="far fa-heart text-gray-600 hover:text-red-500 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-3 flex-1 flex flex-col justify-start">
+
+                    <h3 class="font-semibold text-sm text-gray-800 mb-1 line-clamp-2">
+                        {{ product.product_name }}
+                    </h3>
+
+                    <p class="text-gray-500 text-xs mb-2">{{ product.category }}</p>
+
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-500 text-xs ml-1">4.7 | 3.4k</span>
+                    </div>
+
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <span class="text-base font-bold text-gray-900">{{ product.price|intcomma }}</span>
+                        </div>
+                        <span class="text-green-600 text-xs font-medium">30% off</span>
+                    </div>
+
+                    <p class="text-green-600 text-xs font-medium">Free Delivery</p>
+
+                </div>
+
+            </div>
+                </a>
+            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Innerwear Section -->
+<section class="py-10 bg-gray-50">
+    <div class="container mx-auto px-4">
+
+        <!-- Section Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">Innerwear Collection</h2>
+                <p class="text-gray-600 mt-2">Comfort, Style & Perfect Fit for Everyone</p>
+            </div>
+
+            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                View All
+                <i class="fas fa-chevron-right ml-1 text-sm"></i>
+            </a>
+        </div>
+
+        <!-- 4 Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+            <!-- CARD 1: Men Innerwear -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+                <div class="aspect-[3/4] w-full overflow-hidden">
+                    <img src="{% static 'images/inner-wear/men-innerwear-main.png' %}"
+                         class="w-full h-full object-cover object-center"
+                         alt="Men Innerwear">
+                </div>
+
+                <div class="p-5">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Men Innerwear</h2>
+                    <p class="text-gray-600 text-sm mb-3">Vests, Boxers, Briefs & Premium Comfortwear</p>
+                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                        View all <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- CARD 2: Women Innerwear -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+                <div class="aspect-[3/4] w-full overflow-hidden">
+                    <img src="{% static 'images/inner-wear/women-simple-innerwear.png' %}"
+                         class="w-full h-full object-cover object-center"
+                         alt="Women Innerwear">
+                </div>
+
+                <div class="p-5">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Women Innerwear</h2>
+                    <p class="text-gray-600 text-sm mb-3">Comfortable Camisoles, Slips & Essential Wear</p>
+                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                        View all <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- CARD 3: Stylish Bras & Panties -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+                <div class="aspect-[3/4] w-full overflow-hidden">
+                    <img src="{% static 'images/inner-wear/stylis-bra.png' %}"
+                         class="w-full h-full object-cover object-center"
+                         alt="Stylish Bras & Panties">
+                </div>
+
+                <div class="p-5">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Stylish Bras & Panties</h2>
+                    <p class="text-gray-600 text-sm mb-3">Fashionable Lingerie Sets for Every Occasion</p>
+                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                        Shop Collection <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- CARD 4: Kids Innerwear -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+                <div class="aspect-[3/4] w-full overflow-hidden">
+                    <img src="{% static 'images/inner-wear/kid-innerwear.png' %}"
+                         class="w-full h-full object-cover object-center"
+                         alt="Kids Innerwear">
+                </div>
+
+                <div class="p-5">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Kids Innerwear</h2>
+                    <p class="text-gray-600 text-sm mb-3">Soft, Breathable & Skin-Friendly Daily Wear</p>
+                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                        View all <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+            <!-- Winter Clothes Section -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+
+        <!-- Section Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">Exclusive Winter Collection</h2>
+                <p class="text-gray-600 mt-2">Stay Warm • Look Stylish</p>
+            </div>
+
+            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                View All
+                <i class="fas fa-chevron-right ml-1 text-sm"></i>
+            </a>
+        </div>
+
+        <!-- PRODUCTS LEFT + POSTER RIGHT -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+            <!-- LEFT SIDE PRODUCTS -->
+            <div class="col-span-1 md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for product in winter_wear|slice:":3" %}
+                <a href="#">
+
+                <div class="bg-white rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border border-gray-100 h-full flex flex-col">
+
+                    <div class="relative">
+                        <img src="{{ product.product_images.first.image.url }}" 
+                            alt="{{ product.product_name }}" 
+                            class="w-full h-96 object-cover">
+
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">30% OFF</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <button class="bg-white/90 hover:bg-white p-1.5 rounded-full shadow-sm">
+                                <i class="far fa-heart text-gray-600 hover:text-red-500 text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-3 flex-1 flex flex-col justify-start">
+                        <h3 class="font-semibold text-sm text-gray-800 mb-1 line-clamp-2">
+                            {{ product.product_name }}
+                        </h3>
+
+                        <p class="text-gray-500 text-xs mb-2">{{ product.category }}</p>
+
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-500 text-xs ml-1">4.7 | 3.4k</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-2">
+                            <div>
+                                <span class="text-base font-bold text-gray-900">{{ product.price|intcomma }}</span>
+                            </div>
+                            <span class="text-green-600 text-xs font-medium">30% off</span>
+                        </div>
+
+                        <p class="text-green-600 text-xs font-medium">Free Delivery</p>
+                    </div>
+
+                </div>
+                </a>
+                {% endfor %}
+            </div>
+
+            <!-- RIGHT SIDE POSTER -->
+            <div class="col-span-1 md:col-span-1">
+                        <img src="{%static 'images/ChatGPT Image Nov 10, 2025, 05_36_18 PM.png'%}" 
+                     alt="Winter Wear Poster"
+                     class="w-full h-full object-cover rounded-lg shadow-md">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- Hot Deals on Electronics Section -  -->
+<section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <!-- Section Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">Hot Deals ON Electronics</h2>
+                <p class="text-gray-600 mt-2">Latest gadgets at unbeatable prices</p>
+            </div>
+            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                View All 
+                <i class="fas fa-chevron-right ml-1 text-sm"></i>
+            </a>
+        </div>
+
+        <!-- M Electronics Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            
+            {% for product in electronics %}
+                <a href="{% url 'product_page' product.slug%}">
+            <!-- Electronics Card 1 - Smartphone -->
+            <div class="bg-white rounded-sm overflow-hidden hover:shadow-lg transition duration-300 group border border-gray-100">
+                <div class="relative">
+                      <img src="/media/{{product.product_images.first.image}}" 
+                         alt="Smartphone" 
+                         class="w-full h-72 object-cover group-hover:scale-105 transition duration-300">
+                    <div class="absolute top-2 left-2">
+                        <span class="bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">25% OFF</span>
+                    </div>
+                    <div class="absolute top-2 right-2">
+                        <button class="bg-white/90 hover:bg-white p-1.5 rounded-full transition duration-300 shadow-sm">
+                            <i class="far fa-heart text-gray-600 hover:text-red-500 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-3">
+                    <h3 class="font-semibold text-sm text-gray-800 mb-1 line-clamp-2">{{product.product_name}}</h3>
+                    <p class="text-gray-500 text-xs mb-2">{{product.category}}</p>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-500 text-xs ml-1">4.7 | 2.3k</span>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <span class="text-base font-bold text-gray-900">{{product.price|intcomma}}</span>
+                        </div>
+                        <span class="text-green-600 text-xs font-medium">25% off</span>
+                    </div>
+                    <p class="text-green-600 text-xs font-medium">Free Delivery</p>
+                </div>
+            </div>
+
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-8 bg-gray-50">
+    <div class="container mx-auto px-4">
+
+        <!-- 3 Big Cards Row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            <!-- BIG CARD 1 -->
+            <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                
+                <!-- Header -->
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold text-gray-800">Best Deals On Winter Wears</h2>
+                    <button class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-arrow-right text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- 2×2 Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                    {% for product in winter_wear|slice:":4" %}
+                    <a href="#">
+                    <div class="border border-gray-200 rounded-lg p-3 hover:shadow-md transition">
+                        <img src="/media/{{product.product_images.first.image}}" class="w-full h-28 object-contain mb-2">
+                        <p class="text-gray-800 text-sm font-medium">{{product.product_name}}</p>
+                        <p class="text-green-600 text-sm font-bold">Min. 50% Off</p>
+                    </div>
+                    </a>
+                   {%endfor%}
+                </div>
+            </div>
+
+            <!-- BIG CARD 2 -->
+            <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+
+                <!-- Header -->
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold text-gray-800">Hair & Skin Care Must-Haves</h2>
+                    <button class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-arrow-right text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- 2×2 Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                {% for product in beauty_and_personal_care %}
+                    <a href="#">
+                    <div class="border border-gray-200 rounded-lg p-3 hover:shadow-md transition">
+                        <img src="{{product.product_images.first.image.url}}" class="w-full h-28 object-contain mb-2">
+                        <p class="text-gray-800 text-sm font-medium">{{product.product_name}}</p>
+                        <p class="text-green-600 text-sm font-bold">Min. 50% Off</p>
+                    </div>
+                    </a>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <!-- BIG CARD 3 -->
+            <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+
+                <!-- Header -->
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold text-gray-800">Home Essentials & Decor</h2>
+                    <button class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-arrow-right text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- 2×2 Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                    {% for product in home_kitchen_and_decor|slice:":4" %}
+                    <a href="#">
+
+                    <div class="border border-gray-200 rounded-lg p-3 hover:shadow-md transition">
+                        <img src="/media/{{product.product_images.first.image}}" class="w-full h-28 object-contain mb-2">
+                        <p class="text-gray-800 text-sm font-medium">{{product.product_name}}</p>
+                        <p class="text-green-600 text-sm font-bold">Min. 50% Off</p>
+                    </div>
+                    </a>
+                    {%endfor%}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Products For You Section - -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <!-- Section Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">Winter Essentials You’ll Love</h2>
+                <p class="text-gray-600 mt-2">Your Winter Style Starts Here</p>
+            </div>
+            <div class="flex items-center space-x-4">
+               
+                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                    View All
+                    <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                </a>
+            </div>
+        </div>
+
+        <!--  Products Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            {% for product in fashions %}
+            <a href="#">
+            <!-- Product 1 -->
+            <div class="bg-white rounded-sm overflow-hidden hover:shadow-lg transition duration-300 group border border-gray-100">
+                <div class="relative">
+                    <img src="/media/{{product.product_images.first.image}}" 
+                         alt="Men's T-Shirt" 
+                         class="w-full h-72 object-cover group-hover:scale-105 transition duration-300">
+                    <div class="absolute top-2 left-2">
+                        <span class="bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">50% OFF</span>
+                    </div>
+                    <div class="absolute top-2 right-2">
+                        <button class="bg-white/90 hover:bg-white p-1.5 rounded-full transition duration-300 shadow-sm">
+                            <i class="far fa-heart text-gray-600 hover:text-red-500 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-3">
+                    <h3 class="font-semibold text-sm text-gray-800 mb-1 line-clamp-2">{{product.product_name}}</h3>
+                    <p class="text-gray-500 text-xs mb-2">{{product.category}}</p>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-500 text-xs ml-1">4.4 | 1.2k</span>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <span class="text-base font-bold text-gray-900">{{product.price|intcomma}}</span>
+                        </div>
+                        <span class="text-green-600 text-xs font-medium">50% off</span>
+                    </div>
+                    <p class="text-green-600 text-xs font-medium">Free Delivery</p>
+                </div>
+            </div>
+            </a>
+            {%endfor%}
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!--  Products Section -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <!-- Section Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">TRENDING PRODUCTS</h2>
+                <p class="text-gray-600 mt-2">Inspired by your browsing history</p>
+            </div>
+            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                View All
+                <i class="fas fa-chevron-right ml-1 text-sm"></i>
+            </a>
+        </div>
+
+        <!--  Products Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            
+            <!-- Product Card 1 -->
+            <div class="bg-white rounded-sm overflow-hidden hover:shadow-lg transition duration-300 group border border-gray-100">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Men's T-Shirt" 
+                         class="w-full h-72 object-cover group-hover:scale-105 transition duration-300">
+                    <div class="absolute top-2 left-2">
+                        <span class="bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">60% OFF</span>
+                    </div>
+                    <div class="absolute top-2 right-2">
+                        <button class="bg-white/90 hover:bg-white p-1.5 rounded-full transition duration-300 shadow-sm">
+                            <i class="far fa-heart text-gray-600 hover:text-red-500 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-3">
+                    <h3 class="font-semibold text-sm text-gray-800 mb-1 line-clamp-2">Men's Cotton Regular Fit T-Shirt</h3>
+                    <p class="text-gray-500 text-xs mb-2">H&M</p>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-500 text-xs ml-1">4.2 | 2.3k</span>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <span class="text-base font-bold text-gray-900">₹499</span>
+                            <span class="text-gray-400 line-through text-xs ml-1">₹1249</span>
+                        </div>
+                        <span class="text-green-600 text-xs font-medium">60% off</span>
+                    </div>
+                    <p class="text-green-600 text-xs font-medium">Free Delivery</p>
+                </div>
+            </div>
+
+            
+            
+
+        </div>
+    </div>
+</section>
+
+<style>
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+ /* Ensure equal height for all sections */
+    .lg\:w-3\/4, .lg\:w-1\/4 {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Make sure product cards and aside have same height */
+    .grid, .bg-gradient-to-br {
+        height: 100%;
+    }
+    .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+</style>
+
+<!-- JAVASCRIPT FOR AUTO SLIDE -->
+
+<script>
+let currentSlide = 0;
+const slider = document.getElementById("heroSlider");
+const slides = slider.children.length;
+const dots = document.querySelectorAll(".dot");
+let autoSlideTimer;
+
+// 🌟 Update Slider Position
+function updateSlide() {
+    slider.style.transition = "transform 0.7s";
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    
+    dots.forEach((dot, index) => {
+        dot.classList.toggle("bg-white", index === currentSlide);
+        dot.classList.toggle("bg-white/40", index !== currentSlide);
+    });
+}
+
+// 🌟 Auto Slide Right → Left (Loop Without Reverse)
+function startAutoSlide() {
+    autoSlideTimer = setInterval(() => {
+        currentSlide++;
+        
+        if (currentSlide === slides) {
+            // Jump instantly to 0 without animation
+            slider.style.transition = "none";
+            slider.style.transform = "translateX(0)";
+            currentSlide = 0;
+
+            // Allow browser to apply transform THEN animate next slide
+            setTimeout(() => updateSlide(), 20);
+        } else {
+            updateSlide();
+        }
+    }, 3000);
+}
+
+startAutoSlide();
+
+// 🌟 Arrow: Next
+document.getElementById("nextBtn").addEventListener("click", () => {
+    clearInterval(autoSlideTimer);
+
+    currentSlide = (currentSlide + 1) % slides;
+    updateSlide();
+
+    startAutoSlide();
+});
+
+// 🌟 Arrow: Previous
+document.getElementById("prevBtn").addEventListener("click", () => {
+    clearInterval(autoSlideTimer);
+
+    currentSlide = (currentSlide - 1 + slides) % slides;
+    updateSlide();
+
+    startAutoSlide();
+});
+
+// 🌟 Dots Click
+dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+        clearInterval(autoSlideTimer);
+        currentSlide = i;
+        updateSlide();
+        startAutoSlide();
+    });
+});
+</script>
+
+
+{% endblock %}
