@@ -8,10 +8,11 @@ def product_page(request,slug):
     return render(request,'product/product.html',context)
 
 
-# def all_products(request):
-#     products = Product.objects.all()
-#     context ={
-#         'products' : products
-#     }
-#     return render(request,'product/all_products.html',context)
+def all_products(request,category):
+    products = Product.objects.filter(category__category_name__iexact=category)
+    context ={
+        'products' : products,
+        'category' : category
+    }
+    return render(request,'product/all_products.html',context)
    

@@ -400,7 +400,7 @@
                 <h2 class="text-3xl font-bold text-gray-800">Hot Deals ON Electronics</h2>
                 <p class="text-gray-600 mt-2">Latest gadgets at unbeatable prices</p>
             </div>
-            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+            <a href="{%url 'all_products' 'electronics'%}" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
                 View All 
                 <i class="fas fa-chevron-right ml-1 text-sm"></i>
             </a>
@@ -493,7 +493,9 @@
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-bold text-gray-800">Hair & Skin Care Must-Haves</h2>
                     <button class="text-blue-600 hover:text-blue-800">
+                        <a href="{%url 'all_products' 'beauty_and_personal_care'%}">
                         <i class="fas fa-arrow-right text-xl"></i>
+                        </a>
                     </button>
                 </div>
 

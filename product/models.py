@@ -29,6 +29,7 @@ class Product(BaseModel):
     category = models.ForeignKey(Category,on_delete=models.CASCADE,null=True,blank=True)
     slug = models.SlugField(unique=True,null=True,blank=True)
     price = models.IntegerField()
+    full_price = models.IntegerField(null=True,blank=True)
     product_specification = models.TextField(null=True,blank = True)
     product_description = models.TextField()
 
