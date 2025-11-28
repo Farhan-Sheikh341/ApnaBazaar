@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Product , Category
+from django.db.models import Q
 # Create your views here.
 def product_page(request,slug):
     
@@ -9,7 +10,18 @@ def product_page(request,slug):
 
 
 def all_products(request,category):
-    products = Product.objects.filter(category__category_name__iexact=category)
+    parent = Category.objects.filter(category_name__iexact=category).first()
+
+    if not parent:
+        products = Product.objects.none()
+
+    else:
+        subcategories = Category.objects.filter(parent=parent)
+
+        products = Product.objects.filter(
+            Q(category=parent) | Q(category__in=subcategories)
+        )
+
     context ={
         'products' : products,
         'category' : category

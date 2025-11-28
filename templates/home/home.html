@@ -147,7 +147,7 @@
                      class="w-full h-full object-cover rounded-lg shadow-md">
             </div>
 
-            <!-- RIGHT SIDE 3 PRODUCTS -->
+            <!-- RIGHT SIDE 3 PRODUCTS --->
             <div class="col-span-1 md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {% for product in jewellery|slice:":3" %}
                 <a href="{% url 'product_page' product.slug%}">
@@ -218,7 +218,7 @@
                 <p class="text-gray-600 mt-2">Comfort, Style & Perfect Fit for Everyone</p>
             </div>
 
-            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+            <a href="{%url 'all_products' 'inner_wear'%}" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
                 View All
                 <i class="fas fa-chevron-right ml-1 text-sm"></i>
             </a>
@@ -238,7 +238,7 @@
                 <div class="p-5">
                     <h2 class="text-xl font-bold text-gray-800 mb-2">Men Innerwear</h2>
                     <p class="text-gray-600 text-sm mb-3">Vests, Boxers, Briefs & Premium Comfortwear</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                    <a href="{%url 'all_products' 'men_inner_wear'%}" class="text-blue-600 font-semibold flex items-center">
                         View all <i class="fas fa-chevron-right ml-2"></i>
                     </a>
                 </div>
@@ -256,7 +256,7 @@
                 <div class="p-5">
                     <h2 class="text-xl font-bold text-gray-800 mb-2">Women Innerwear</h2>
                     <p class="text-gray-600 text-sm mb-3">Comfortable Camisoles, Slips & Essential Wear</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                    <a href="{%url 'all_products' 'women_innerwear'%}" class="text-blue-600 font-semibold flex items-center">
                         View all <i class="fas fa-chevron-right ml-2"></i>
                     </a>
                 </div>
@@ -274,7 +274,7 @@
                 <div class="p-5">
                     <h2 class="text-xl font-bold text-gray-800 mb-2">Stylish Bras & Panties</h2>
                     <p class="text-gray-600 text-sm mb-3">Fashionable Lingerie Sets for Every Occasion</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                    <a href="{%url 'all_products' 'stylis_women_innerwear'%}" class="text-blue-600 font-semibold flex items-center">
                         Shop Collection <i class="fas fa-chevron-right ml-2"></i>
                     </a>
                 </div>
@@ -292,7 +292,7 @@
                 <div class="p-5">
                     <h2 class="text-xl font-bold text-gray-800 mb-2">Kids Innerwear</h2>
                     <p class="text-gray-600 text-sm mb-3">Soft, Breathable & Skin-Friendly Daily Wear</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center">
+                    <a href="{%url 'all_products' 'kid_inner_wear'%}" class="text-blue-600 font-semibold flex items-center">
                         View all <i class="fas fa-chevron-right ml-2"></i>
                     </a>
                 </div>
@@ -314,7 +314,7 @@
                 <p class="text-gray-600 mt-2">Stay Warm • Look Stylish</p>
             </div>
 
-            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+            <a href="{%url 'all_products' 'winter_wear'%}" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
                 View All
                 <i class="fas fa-chevron-right ml-1 text-sm"></i>
             </a>
@@ -326,7 +326,7 @@
             <!-- LEFT SIDE PRODUCTS -->
             <div class="col-span-1 md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {% for product in winter_wear|slice:":3" %}
-                <a href="#">
+                <a href="{%url 'product_page' product.slug %}">
 
                 <div class="bg-white rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border border-gray-100 h-full flex flex-col">
 
@@ -378,9 +378,11 @@
 
             <!-- RIGHT SIDE POSTER -->
             <div class="col-span-1 md:col-span-1">
+                <a href="{%url 'all_products' 'winter_wear'%}">
                         <img src="{%static 'images/ChatGPT Image Nov 10, 2025, 05_36_18 PM.png'%}" 
                      alt="Winter Wear Poster"
                      class="w-full h-full object-cover rounded-lg shadow-md">
+                     </a>
             </div>
 
         </div>
@@ -501,8 +503,8 @@
 
                 <!-- 2×2 Grid -->
                 <div class="grid grid-cols-2 gap-4">
-                {% for product in beauty_and_personal_care %}
-                    <a href="#">
+                {% for product in beauty_and_personal_care%}
+                    <a href="{%url 'product_page' product.slug%}">
                     <div class="border border-gray-200 rounded-lg p-3 hover:shadow-md transition">
                         <img src="{{product.product_images.first.image.url}}" class="w-full h-28 object-contain mb-2">
                         <p class="text-gray-800 text-sm font-medium">{{product.product_name}}</p>
@@ -521,6 +523,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-bold text-gray-800">Home Essentials & Decor</h2>
                     <button class="text-blue-600 hover:text-blue-800">
+                        <a href="{%url 'all_products' 'home_kitchen_and_decor'%}"></a>
                         <i class="fas fa-arrow-right text-xl"></i>
                     </button>
                 </div>
@@ -528,7 +531,7 @@
                 <!-- 2×2 Grid -->
                 <div class="grid grid-cols-2 gap-4">
                     {% for product in home_kitchen_and_decor|slice:":4" %}
-                    <a href="#">
+                    <a href="{%url 'product_page' product.slug%}">
 
                     <div class="border border-gray-200 rounded-lg p-3 hover:shadow-md transition">
                         <img src="/media/{{product.product_images.first.image}}" class="w-full h-28 object-contain mb-2">
@@ -557,7 +560,7 @@
             </div>
             <div class="flex items-center space-x-4">
                
-                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                <a href="{%url 'all_products' 'winter_wear'%}" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
                     View All
                     <i class="fas fa-chevron-right ml-1 text-sm"></i>
                 </a>
@@ -567,7 +570,7 @@
         <!--  Products Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             {% for product in fashions %}
-            <a href="#">
+            <a href="{%url 'product_page' product.slug%}">
             <!-- Product 1 -->
             <div class="bg-white rounded-sm overflow-hidden hover:shadow-lg transition duration-300 group border border-gray-100">
                 <div class="relative">
